@@ -1,0 +1,88 @@
+	<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'JetBrains Mono', monospace; 
+            color: white; 
+            margin: 0; 
+            padding: 0; 
+            background: transparent; 
+            overflow: hidden;
+        }
+        
+        #keyboard { 
+            display: grid; 
+            grid-template-columns: repeat(4, 60px); 
+            grid-template-rows: repeat(4, 60px);
+            gap: 0px; 
+            width: max-content;
+        }
+        
+        .key { 
+            background: rgba(0, 0, 0, 0); 
+            border: 1px solid white; 
+            border-radius: 0px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            font-size: 18px; 
+            transition: all 0.05s ease;
+            box-sizing: border-box;
+        }
+        
+        .active { 
+            background: white; 
+            color: black; 
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id="keyboard">
+<div id="KEY_1" class="key">1</div>
+          <div id="KEY_3" class="key">3</div>
+        <div id="BTN_LEFT" class="key">M1</div>
+           <div id="BTN_RIGHT" class="key">M2</div>
+
+        <div id="KEY_TAB" class="key">tab</div>
+        <div id="KEY_Q" class="key">q</div>
+        <div id="KEY_W" class="key">w</div>
+        <div id="KEY_E" class="key">e</div>
+        
+        <div id="KEY_LEFTCTRL" class="key">ctrl</div>
+        <div id="KEY_A" class="key">a</div>
+        <div id="KEY_S" class="key">s</div>
+        <div id="KEY_D" class="key">d</div>
+        
+        <div id="KEY_SPACE" class="key">space</div>
+        <div id="KEY_LEFTSHIFT" class="key">shift</div>
+        <div id="KEY_F" class="key">f</div>
+        <div id="KEY_C" class="key">c</div>
+
+
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8765');
+        
+        ws.onmessage = (event) => {
+            let [key, state] = event.data.split('|');
+            if (key === 'BTN_MOUSE') key = 'BTN_LEFT';
+            if (key === 'KEY_RIGHTCTRL') key = 'KEY_LEFTCTRL';
+            if (key === 'KEY_RIGHTALT') key = 'KEY_LEFTALT';
+
+            const keyElement = document.getElementById(key);
+            if (keyElement) {
+                if (state === "DOWN") keyElement.classList.add('active');
+                if (state === "UP") keyElement.classList.remove('active');
+            }
+        };
+    </script>
+</body>
+</html>
