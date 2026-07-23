@@ -41,8 +41,8 @@ async def listen_to_device(device_path, websocket):
             await asyncio.sleep(2)
 
 async def handle_client(websocket):
-    keyboard_path = '/dev/input/event0'
-    mouse_path = '/dev/input/event3'
+    keyboard_path = '/dev/input/by-id/usb-Keychron_Keychron_V1_Max-event-kbd'
+    mouse_path = '/dev/input/by-id/usb-Logitech_USB_Receiver-if02-event-mouse'
     
     await asyncio.gather(
         listen_to_device(keyboard_path, websocket),
