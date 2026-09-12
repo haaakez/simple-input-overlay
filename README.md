@@ -9,4 +9,5 @@ figure out the device names through evtest, change them in server.py, then i wou
 
 after that click "add source" in obs, "browser" and choose overlay.html(local file option)
 
-<img width="170" height="167" alt="image" src="https://github.com/user-attachments/assets/974c310f-f6e2-4dda-83a2-901cc8962378" />
+<img width="173" height="175" alt="image" src="https://github.com/user-attachments/assets/014f40cc-c2fd-421c-a31b-d12fdb083364" />
+
